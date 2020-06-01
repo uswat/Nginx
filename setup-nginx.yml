@@ -1,0 +1,6 @@
+---
+- hosts: '{{ target }}'
+  become: true
+  remote_user: {{ remote_username }}
+  roles:
+    - nginx
