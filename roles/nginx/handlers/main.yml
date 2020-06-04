@@ -1,5 +1,5 @@
 ---
 - name: Start Nginx
-  service:
-      name=nginx
-      state=started
+  systemd:
+    name: nginx
+    state: started

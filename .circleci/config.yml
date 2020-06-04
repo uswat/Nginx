@@ -1,0 +1,13 @@
+version: 2
+jobs:
+  build:
+    branches:
+      ignore:
+        - master
+    docker:
+      - image: python:3.8.3-slim-buster
+    steps:
+      - checkout
+      - run: pip install ansible-lint
+      - run: ansible-lint --version
+      - run: ansible-lint .
