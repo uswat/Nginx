@@ -1,0 +1,9 @@
+---
+- name: Refresh package cache
+  apt:
+    update_cache: yes
+
+- name: Install Nginx
+  apt:
+    name: nginx-1.17.0
+    state: present

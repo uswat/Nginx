@@ -1,0 +1,21 @@
+version: 2
+jobs:
+  yaml_lint:
+    docker:
+      - image: sdesbure/yamllint:latest
+    steps:
+      - checkout
+      - run: yamllint .
+  ansible_lint:
+    docker:
+      - image: cytopia/ansible-lint
+    steps:
+      - checkout
+      - run: ansible-lint setup-nginx.yml
+
+workflows:
+  version: 2
+  linters:
+    jobs:
+      - yaml_lint
+      - ansible_lint
