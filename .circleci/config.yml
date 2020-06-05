@@ -1,13 +1,20 @@
 version: 2
 jobs:
-  build:
-    branches:
-      ignore:
-        - master
+  yaml_lint:
     docker:
-      - image: python:3.8.3-slim-buster
+      - image: sdesbure/yamllint:latest
     steps:
       - checkout
-      - run: pip install ansible-lint
-      - run: ansible-lint --version
-      - run: ansible-lint .
+      - run: yamllint .
+  ansible_lint:
+    docker:
+      - image: cytopia/ansible-lint 
+    steps:
+      - checkout
+      - run: ansible-lint setup-nginx.yml
+workflows:
+  version: 2
+  linters:
+    jobs:
+      - yaml_lint
+      - ansible_lint
