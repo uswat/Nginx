@@ -5,5 +5,5 @@
 
 - name: Install Nginx
   apt:
-    name: nginx
-    state: latest
+    name: nginx-1.17.0
+    state: present
